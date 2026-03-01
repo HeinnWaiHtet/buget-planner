@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     // Create profile (use upsert to avoid duplicate failures)
     const { error: profileError } = await admin
       .from("profiles")
-      .upsert({ id: userId, name }, { onConflict: ["id"] });
+      .upsert({ id: userId, name }, { onConflict: "id" });
 
     if (profileError) {
       console.error("Profile insert error (admin):", profileError.message);

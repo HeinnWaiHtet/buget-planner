@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
       try {
         const { error: profileErr } = await db
           .from("profiles")
-          .upsert({ id: actorId, name: name || null }, { onConflict: ["id"] });
+          .upsert({ id: actorId, name: name || null }, { onConflict: "id" });
         if (profileErr) console.error("Profile upsert error:", profileErr.message || profileErr);
       } catch (e) {
         console.error("Profile upsert error:", e);
